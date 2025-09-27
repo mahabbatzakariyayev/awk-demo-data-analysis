@@ -4,24 +4,15 @@
 curl -s "https://people.sc.fsu.edu/~jburkardt/data/csv/grades.csv" > grades.csv
 
 
-echo "First 3 lines:"
+
 awk 'NR<=3 {print}' grades.csv
 
 
-echo " 1.2 Print specific fields (First name, Last name):"
-echo "Command: awk -F',' '{print \$2, \$1}' grades.csv"
 awk -F',' 'NR<=5 {print $2, $1}' grades.csv
-echo ""
-
-echo " 1.3 Print with custom formatting:"
-echo "Command: awk -F',' '{printf \"%-15s %-15s\\n\", \$2, \$1}' grades.csv"
-awk -F',' 'NR<=5 {printf "%-15s %-15s\n", $2, $1}' grades.csv
-echo ""
 
 
-echo "LESSON 2: FIELD SEPARATORS & RECORD PROCESSING"
-echo "==============================================="
-echo ""
+
+
 
 echo " 2.1 Using different field separator (-F option):"
 echo "Command: awk -F',' 'NR==1 {print \"Fields:\", NF}' grades.csv"
@@ -39,9 +30,6 @@ awk 'END {print "Total records:", NR}' grades.csv
 echo ""
 
 
-echo "LESSON 3: PATTERN MATCHING & FILTERING"
-echo "======================================"
-echo ""
 
 echo " 3.1 Filter by grade (A students only):"
 echo "Command: awk -F',' '\$9 ~ /^\"A/ {print \$2, \$1, \$9}' grades.csv"
@@ -59,9 +47,7 @@ awk -F',' 'NR>1 && $9 ~ /B/ && $4 > 40 {print $2, $1, $4, $9}' grades.csv
 echo ""
 
 
-echo "LESSON 4: VARIABLES & CALCULATIONS"
-echo "=================================="
-echo ""
+
 
 echo "🧮 4.1 Calculate sum and average of Test1:"
 echo "Command: awk -F',' 'NR>1 {sum += \$4; count++} END {print \"Sum:\", sum, \"Average:\", sum/count}' grades.csv"
@@ -79,17 +65,17 @@ awk -F',' 'NR>1 {avg = ($4+$5+$6+$7)/4; printf "%-15s: %.1f\n", $2" "$1, avg}' g
 echo ""
 
 
-echo "📊 5.1 Count students by grade:"
+echo "5.1 Count students by grade:"
 echo "Command: awk -F',' 'NR>1 {grade_count[\$9]++} END {for(g in grade_count) print g, grade_count[g]}' grades.csv"
 awk -F',' 'NR>1 {grade_count[$9]++} END {for(g in grade_count) print g, grade_count[g]}' grades.csv
 echo ""
 
-echo "📊 5.2 Sum scores by grade level:"
+echo "5.2 Sum scores by grade level:"
 echo "Command: awk -F',' 'NR>1 {grade=\$9; sum[grade]+=\$4; count[grade]++} END {for(g in sum) printf \"%s: avg=%.1f\\n\", g, sum[g]/count[g]}' grades.csv"
 awk -F',' 'NR>1 {grade=$9; sum[grade]+=$4; count[grade]++} END {for(g in sum) printf "%s: avg=%.1f\n", g, sum[g]/count[g]}' grades.csv
 echo ""
 
-echo "📊 5.3 Create grade distribution table:"
+echo "5.3 Create grade distribution table:"
 awk -F',' 'BEGIN{print "Grade Distribution:"; print "=================="} 
 NR>1 {grades[$9]++; total++} 
 END {
