@@ -1,7 +1,8 @@
 #!/bin/bash
 
-curl -s "https://people.sc.fsu.edu/~jburkardt/data/csv/grades.csv" > grades.csv
+#curl -s "https://people.sc.fsu.edu/~jburkardt/data/csv/grades.csv" > grades.csv
 #
+curl -s "https://raw.githubusercontent.com/mahabbatzakariyayev/awk-demo-data-analysis/refs/heads/main/grades.csv"  > grades.csv
 echo "Print first 3 lines:"
 awk 'NR<=3 {print}' grades.csv
 
