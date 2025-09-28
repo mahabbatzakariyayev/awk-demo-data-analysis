@@ -2,13 +2,18 @@
 
 #curl -s "https://people.sc.fsu.edu/~jburkardt/data/csv/grades.csv" > grades.csv
 #
-curl -s "https://raw.githubusercontent.com/mahabbatzakariyayev/awk-demo-data-analysis/refs/heads/main/grades.csv"  > grades.csv
+curl  "https://raw.githubusercontent.com/mahabbatzakariyayev/awk-demo-data-analysis/refs/heads/main/grades.csv"  > grades.csv
+
+#!/bin/bash
+
 echo "Print first 3 lines:"
 awk 'NR<=3 {print}' grades.csv
 
 echo "Print first name and last name:"
 awk -F',' 'NR<=5 {print $2, $1}' grades.csv
 
+echo "Remove outliers (null data or any test grade < 0):"
+awk -F',' 'NR>1 && $2 != "" && $1 != "" && $4 != "" && $5 != "" && $6 != "" && $7 != "" && $8 != "" && $9 != "" && $4 >= 0 && $5 >= 0 && $6 >= 0 && $7 >= 0 && $8 >= 0 {print $0}' grades.csv
 #
 echo "Count number of fields:"
 awk -F',' 'NR==1 {print "Fields:", NF}' grades.csv
