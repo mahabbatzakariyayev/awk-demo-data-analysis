@@ -65,6 +65,7 @@ Print first 3 lines:
 ## Use Cases
 
 * Learn **text processing** with AWK.
+
 * Perform **quick exploratory data analysis** in Bash.
 * Validate datasets by identifying **inconsistencies** in grading.
 * Practice **shell scripting** for automation.
@@ -72,3 +73,7 @@ Print first 3 lines:
 ## License
 
 This project is open-source and available under the MIT License.
+ 
+
+python3 -m pip install matplotlib seaborn
+python3 visualizations.py
