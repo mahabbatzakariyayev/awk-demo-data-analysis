@@ -1,5 +1,8 @@
-```bash
+
 #!/bin/bash
+#curl -s "https://people.sc.fsu.edu/~jburkardt/data/csv/grades.csv" > grades.csv
+#
+# curl  "https://raw.githubusercontent.com/mahabbatzakariyayev/awk-demo-data-analysis/refs/heads/main/grades.csv"  > grades.csv
 
 echo "Print first 3 lines:"
 awk 'NR<=3 {print}' grades.csv
@@ -90,7 +93,7 @@ NR>1 {
     gsub(/"/, "", reported)
     gsub(/[-+]/, "", reported)   # remove +/- for comparison
     if (substr(reported,1,1) != expected) {
-        printf "Possible grade error: %-15s Avg=%.1f Expected=%s Reported=%s\n", $2" "$1, avg, expected, $9
+        printf "Grading results: %-15s Avg=%.1f Expected=%s Reported=%s\n", $2" "$1, avg, expected, $9
     }
 }' grades.csv
-```
+
